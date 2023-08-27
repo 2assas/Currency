@@ -18,9 +18,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "FIXER_API_ACCESS_KEY", "\"${project.findProperty("FIXER_API_ACCESS_KEY")}\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "FIXER_API_ACCESS_KEY", "\"${project.findProperty("FIXER_API_ACCESS_KEY")}\"")
         }
     }
     compileOptions {
