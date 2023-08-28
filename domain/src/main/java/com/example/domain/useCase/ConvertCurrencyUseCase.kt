@@ -18,7 +18,7 @@ class ConvertCurrencyUseCase(private val exchangeRateRepository: ExchangeRateRep
 
         // Fetch conversion rates for Euro (EUR) as base currency
         val baseCurrency = "EUR"
-        val conversionRatesResult = exchangeRateRepository.getExchangeRates(baseCurrency)
+        val conversionRatesResult = exchangeRateRepository.getAllExchangeRates(baseCurrency)
 
         // Handle repository result
         return when {
