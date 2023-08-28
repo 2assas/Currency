@@ -9,10 +9,7 @@ import com.example.domain.repo.ExchangeRateRepository
 class ExchangeRateRepoImpl(private val apiService: ApiService) : ExchangeRateRepository {
     override suspend fun getExchangeRates(baseCurrency: String): Result<ExchangeRateEntity?> {
         return try {
-            val response = apiService.getLatestExchangeRates(
-                BuildConfig.FIXER_API_ACCESS_KEY,
-                "EUR"
-            ) // EUR as base currency
+            val response = apiService.getLatestExchangeRates(BuildConfig.FIXER_API_ACCESS_KEY, "EUR") // EUR as base currency
             if (response.isSuccessful) {
                 val conversionRates = response.body()?.let { ExchangeRateMapper.map(it) }
                 Result.success(conversionRates)
