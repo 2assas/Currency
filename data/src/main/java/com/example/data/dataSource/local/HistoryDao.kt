@@ -7,8 +7,8 @@ import androidx.room.Query
 
 @Dao
 interface HistoryDao {
-    @Query("SELECT * FROM historical_data WHERE baseCurrency = :base AND targetCurrency = :target ORDER BY id DESC LIMIT 3")
-    suspend fun getHistoricalData(base: String, target: String): List<HistoricalDataEntity>
+    @Query("SELECT * FROM historical_data WHERE date >= :startDate ORDER BY date DESC")
+    suspend fun getHistoricalDataForDateRange(startDate: String): List<HistoricalDataEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHistoricalData(history: HistoricalDataEntity)

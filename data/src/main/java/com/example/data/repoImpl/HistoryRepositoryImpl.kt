@@ -7,8 +7,8 @@ import com.example.domain.entity.HistoricalData
 import com.example.domain.repo.HistoryRepository
 
 class HistoryRepositoryImpl(private val historyDao: HistoryDao) : HistoryRepository {
-    override suspend fun getHistoricalData(base: String, target: String): List<HistoricalData> {
-        return historyDao.getHistoricalData(base, target).toDomainModelList()
+    override suspend fun getHistoricalDataForDateRange(startDate: String): List<HistoricalData> {
+        return historyDao.getHistoricalDataForDateRange(startDate).toDomainModelList()
     }
 
     override suspend fun insertHistoricalData(history: HistoricalData) {
